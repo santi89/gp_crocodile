@@ -11,19 +11,21 @@ using System.Drawing.Imaging;
 using Tao.Platform;
 
 using System.Windows.Forms;
+using System.Media;
+using System.Threading;
 
 namespace WindowsFormsApp1
 {
     public partial class Crocodile : Form
     {
+
+        Thread th;
         double eyex, eyey, eyez;
         double atx, aty, atz, rotx, roty, rotz;
         float r1, r2, r3, r4, r5, r6, r7, r8, r9;
-        
-        Bitmap image;
-        BitmapData bitmapdata1;
-        uint[] texture = new uint[2];
 
+        SoundPlayer sound;
+        String soundfile;
         float yh1=6.0f, yh2=9.0f, yh3=10.0f,ny1=7.5f,ny2=8.5f;
 
         double number_random;
@@ -31,24 +33,19 @@ namespace WindowsFormsApp1
 
         private void btstart_KeyPress(object sender, KeyPressEventArgs e)
         {
- //yh1 = 6.0f; yh2 = 9.0f; yh3 = 10.0f; ny1 = 7.5f; ny2 = 8.5f;
- //           x1 = -6.5; y1 = 0; z1 = 9;
- //           x2 = -3.5; y2 = 0; z2 = 9;
- //            x3 = 0; y3 = 0; z3 = 9;
- //            x4 = 3; y4 = 0; z4 = 9;
- //            x5 = 5.5; y5 = 0; z5 = 9;
- //           x6 = -8; y6 = 0; z6 = 7;
- //          x7 = -8; y7 = 0; z7 = 4.5;
- //            x8 = 7; y8 = 0; z8 = 7;
- //         x9 = 8; y9 = 0; z9 = 4.5;
-            mainstart();
+           
+           
         }
-
+        private void opengame()
+        {
+            Application.Run(new Crocodile());
+        }
         private void btstart_Click(object sender, EventArgs e)
         {
-            
-
-
+            this.Close();
+            th = new Thread(opengame);
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
         }
 
         double x2 = -3.5, y2 = 0, z2 = 9;
@@ -96,7 +93,9 @@ namespace WindowsFormsApp1
                     {
                         MessageBox.Show("To ni la");
                         yh1 = 0f;yh2 = 3.0f;yh3 = 4.0f; ny1 = 1;ny2 = 2;
-                                               
+                        playbite();
+
+
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -107,7 +106,7 @@ namespace WindowsFormsApp1
                     n2 = 2;
                     if (n2 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -115,7 +114,7 @@ namespace WindowsFormsApp1
                     n3 = 3;
                     if (n3 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     r3 = 0.5f;
@@ -126,7 +125,7 @@ namespace WindowsFormsApp1
                     n4 = 4;
                     if (n4 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -136,7 +135,7 @@ namespace WindowsFormsApp1
                     n5 = 5;
                     if (n5 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -146,7 +145,7 @@ namespace WindowsFormsApp1
                     n6= 6;
                     if (n6 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -155,7 +154,7 @@ namespace WindowsFormsApp1
                     n7 = 7;
                     if (n7 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -165,7 +164,7 @@ namespace WindowsFormsApp1
                     n8 = 8;
                     if (n8 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
 
@@ -176,7 +175,7 @@ namespace WindowsFormsApp1
                     n9 = 9;
                     if (n9 == number_random)
                     {
-                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2;
+                        MessageBox.Show("To ni la"); yh1 = 0f; yh2 = 3.0f; yh3 = 4.0f; ny1 = 1; ny2 = 2; playbite();
                     }
                     else { MessageBox.Show("br man ni la"); }
                     break;
@@ -198,22 +197,34 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        private void playbite()
+        {
+            soundfile = @"Cartoon_Bite.wav";
+            sound = new SoundPlayer(soundfile);
+            sound.Play();
+        }
+        private void playbackgroud()
+        {
+            soundfile = @"background_sound.wav";
+            sound = new SoundPlayer(soundfile);
+            sound.PlayLooping();
+        }
         public Crocodile()
         {
             InitializeComponent();
-
+            this.DoubleBuffered = true;
             simpleOpenGlControl1.InitializeContexts();
-            simpleOpenGlControl1.SwapBuffers();
+            //simpleOpenGlControl1.SwapBuffers();
 
             int w = simpleOpenGlControl1.Width;
             int h = simpleOpenGlControl1.Height;
             Gl.glViewport(0, 0, w, h);
             Gl.glMatrixMode(Gl.GL_PROJECTION);
-            Gl.glLoadIdentity();
+            Gl.glEnable(Gl.GL_DEPTH_TEST);
+
+             Gl.glLoadIdentity();
             Glu.gluPerspective(45.0f, (double)w / h, 0.01f, 5000.0f);
             // Gl.glEnable(Gl.GL_LIGHTING);
-            Gl.glEnable(Gl.GL_DEPTH_TEST);
 
             eyex = 5; eyez = 35; eyey = 25;
             atx = 0; aty = 0; atz = 0;
